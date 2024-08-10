@@ -5,6 +5,7 @@ import pathlib
 import threading
 from typing import TYPE_CHECKING, Callable, List, Optional, Tuple
 
+from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import QBuffer, QByteArray, QIODevice, QPoint, QRectF
 from PyQt5.QtGui import (
     QBitmap,
@@ -15,7 +16,8 @@ from PyQt5.QtGui import (
     QPixmapCache,
     QRegion,
 )
-from PyQt5.QtWidgets import QApplication, QGraphicsScene
+from PyQt5.QtWidgets import QApplication, QGraphicsScene, QGraphicsItem
+
 
 from neoscore.core import env, math_helpers
 from neoscore.core.color import Color
@@ -66,8 +68,9 @@ class AppInterface:
         self.app = QApplication(args)
         self.main_window = MainWindow()
         self.scene = QGraphicsScene()
+        
         self.view: Viewport = self.main_window.graphicsView
-        self.view.setScene(self.scene)
+        self.view.setScene(self.scene) #TODO check this for rendering
         self.background_brush = background_brush
         self.auto_viewport_interaction_enabled = auto_viewport_interaction_enabled
         self.font_database = QFontDatabase()
@@ -76,6 +79,8 @@ class AppInterface:
             _RENDER_IMAGE_THREAD_MAX
         )
         self._viewport_rotation = 0
+    
+ 
 
     def set_refresh_func(self, refresh_func: Callable[[float], float]):
         """Set a function to run automatically on a timer in the main window."""
