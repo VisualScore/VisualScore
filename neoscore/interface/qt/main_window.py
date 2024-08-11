@@ -25,6 +25,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi(MainWindow._ui_path, self)
+        self.statusBar().showMessage("Example status message")
         self.refresh_func = None
         self.mouse_event_handler = None
         self._frame = 0  # Frame counter used in debug mode
