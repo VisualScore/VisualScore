@@ -9,7 +9,7 @@ Step 1: Create python virtual environment with this command: "python -m venv `<v
 Step 2: Enter virtual environment with this command: "source `<virtual-environment-name>`/bin/activate"
 Step 3: Run this command to setup dependencies: "pip install -r requirements.txt"
 
-## [Qt/Neoscore Structure Documentation] (https://yielding-bucket-c99.notion.site/QT-PyQt5-Neoscore-Documentation-for-Visualscore-e6e2957dbcc24643a1bf6e7c706a9f75?pvs=4)
+## [Qt/Neoscore Structure Documentation](https://yielding-bucket-c99.notion.site/QT-PyQt5-Neoscore-Documentation-for-Visualscore-e6e2957dbcc24643a1bf6e7c706a9f75?pvs=4)
 
 The above Notion site details the structure of the Neoscore code library. The goal of which is to better understand how PyQt5 and Neoscore interact with each other. Comments and highlights are made to point to where attention should be drawn for building VisualScore's interface.
 
