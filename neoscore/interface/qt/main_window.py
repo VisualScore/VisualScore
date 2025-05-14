@@ -105,7 +105,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.Slash_dropdown.setHidden(True)
         self.Round_dropdown.setHidden(True)
         self.Note_Clusters_dropdown.setHidden(True)
-    
+
     def newFile(self):
         print("New file clicked")
         
@@ -126,11 +126,12 @@ class MainWindow(QtWidgets.QMainWindow):
         
     def pasteFile(self):
         print("Paste file clicked")
-        
+
     def updatePage(self):
-        neoscore.app_interface.clear_scene() 
-        neoscore.document.render(True, Brush("#FFFFFF"))
+        # neoscore.app_interface.clear_scene() 
+        neoscore._render_document(True, Brush("#FFFFFF"))
         # self.graphicsView.viewport().update()
+
         self.refresh()
 
     def addPage(self):

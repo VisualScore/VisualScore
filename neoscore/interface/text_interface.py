@@ -4,6 +4,7 @@ from typing import Dict, NamedTuple, Optional
 from PyQt5.QtGui import QFont, QPainterPath
 
 from neoscore.core.units import Unit
+from neoscore.core.qt_objects import MovableClippingPath
 from neoscore.interface.brush_interface import BrushInterface
 from neoscore.interface.font_interface import FontInterface
 from neoscore.interface.pen_interface import PenInterface
@@ -74,11 +75,14 @@ class TextInterface(PositionedObjectInterface):
 
     def _create_qt_object(self) -> QClippingPath:
         """Create and return this interface's underlying Qt object"""
-        qt_object = self._get_path(self.text, self.font, self.scale)
+        path_item = MovableClippingPath(self)
+        path_item.setPath(self._get_path(self.text, self.font, self.scale).path())
+        qt_object = path_item
+        #qt_object = self._get_path(self.text, self.font, self.scale)
         qt_object.setPos(point_to_qt_point_f(self.pos))
         qt_object.setBrush(self.brush.qt_object)
         qt_object.setPen(self.pen.qt_object)
-        qt_object.update_geometry() 
+        #qt_object.update_geometry() 
         return qt_object
 
     def _get_path(self, text: str, font: FontInterface, scale: float) -> QClippingPath:

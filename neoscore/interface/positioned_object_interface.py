@@ -55,6 +55,20 @@ class PositionedObjectInterface:
     This value is set during rendering and is not meant to be set more than once.
     """
 
+    class _MovableTextItem(QGraphicsSimpleTextItem):
+        """Internal Qt item subclass that syncs position to interface."""
+
+        def __init__(self, interface: PositionedObjectInterface, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self._interface = interface
+
+        def itemChange(self, change, value):
+            if change == QGraphicsSimpleTextItem.ItemPositionChange:
+                new_pos: Point = value
+                print(f"[DEBUG] Qt item moved to: {new_pos.x()}, {new_pos.y()}")
+                object.__setattr__(self._interface, "pos", Point(new_pos.x(), new_pos.y()))
+            return super().itemChange(change, value)
+
     def render(self):
         """Render the object to the scene.
 
