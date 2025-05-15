@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 from warnings import warn
 
-from PyQt5.QtWidgets import QGraphicsSimpleTextItem
+from PyQt5.QtWidgets import QGraphicsSimpleTextItem, QGraphicsItem
 from neoscore.core import neoscore
 from neoscore.core.point import Point
 
@@ -55,20 +55,6 @@ class PositionedObjectInterface:
     This value is set during rendering and is not meant to be set more than once.
     """
 
-    class _MovableTextItem(QGraphicsSimpleTextItem):
-        """Internal Qt item subclass that syncs position to interface."""
-
-        def __init__(self, interface: PositionedObjectInterface, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            self._interface = interface
-
-        def itemChange(self, change, value):
-            if change == QGraphicsSimpleTextItem.ItemPositionChange:
-                new_pos: Point = value
-                print(f"[DEBUG] Qt item moved to: {new_pos.x()}, {new_pos.y()}")
-                object.__setattr__(self._interface, "pos", Point(new_pos.x(), new_pos.y()))
-            return super().itemChange(change, value)
-
     def render(self):
         """Render the object to the scene.
 
@@ -90,11 +76,13 @@ class PositionedObjectInterface:
         return None
 
     def _register_qt_object(self, obj: QGraphicsSimpleTextItem):
-        parent_obj = self._parent_qt_obj()
-        obj.setFlag(QGraphicsSimpleTextItem.ItemIsMovable, True)
-        obj.setFlag(QGraphicsSimpleTextItem.ItemIsSelectable, True)
-        obj.setFlag(QGraphicsSimpleTextItem.ItemSendsGeometryChanges, True)
+        parent_obj = self._parent_qt_obj()            
+
+        obj.setFlag(QGraphicsItem.ItemIsMovable, True)
+        obj.setFlag(QGraphicsItem.ItemIsSelectable, True)
+        obj.setFlag(QGraphicsItem.ItemSendsGeometryChanges, True)
         # obj.setFlag(QGraphicsSimpleTextItem.ItemIsFocusable, True)
+        
         if parent_obj:
             obj.setParentItem(parent_obj)
         else:

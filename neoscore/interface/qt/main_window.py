@@ -4,6 +4,7 @@ from time import time
 from typing import Optional, Tuple
 
 from PyQt5 import QtCore, QtWidgets, uic
+from PyQt5.QtWidgets import QGraphicsItem
 
 # cannot import setup/show again here, circular import
 # from neoscore.core.neoscore import setup, show
@@ -127,10 +128,20 @@ class MainWindow(QtWidgets.QMainWindow):
     def pasteFile(self):
         print("Paste file clicked")
 
+    # Makes page, page shadow, margin outline not dragable or selectable
+    def make_previews_immovable(self):
+        for page in neoscore.document.pages:
+            for obj in page.descendants:
+                if getattr(obj, "_is_preview", False):
+                    qt_object = obj._interfaces[0]._qt_object
+                    qt_object.setFlag(QGraphicsItem.ItemIsMovable, False)
+                    qt_object.setFlag(QGraphicsItem.ItemIsSelectable, False)
+
     def updatePage(self):
         # neoscore.app_interface.clear_scene() 
         neoscore._render_document(True, Brush("#FFFFFF"))
         # self.graphicsView.viewport().update()
+        self.make_previews_immovable()
 
         self.refresh()
 

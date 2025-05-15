@@ -219,6 +219,12 @@ class Page(PositionedObject):
             Brush.no_brush(),
             pen=Pen(_PREVIEW_OUTLINE_COLOR, pattern=PenPattern.DOT),
         )
+
+        # Makes page, page shadow, and margin border easily filterable when sorting through neoscore objects
+        # so they can be treated differently from other objects
+        for preview in [page_drop_shadow_rect, page_preview_rect, live_area_preview_rect]:
+            preview.__setattr__("_is_preview", True)
+
         # Terrible hack to ensure preview is always drawn below document contents
         preview_objs_parent = live_area_preview_rect.parent
         preview_objs_parent.children = (

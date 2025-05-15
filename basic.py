@@ -24,7 +24,7 @@ def updateProps():
     
 def mouseReleaseEvent(event):
     if event.event_type == MouseEventType.RELEASE:
-        print("Mouse button released")
+        # print("Mouse button released")
         updateProps()
     # if event.button() == QtCore.Qt.LeftButton:
     #     updateProps()
