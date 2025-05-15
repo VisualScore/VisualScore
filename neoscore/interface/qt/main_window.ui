@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1232</width>
-    <height>849</height>
+    <height>871</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -193,9 +193,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>0</y>
-           <width>262</width>
-           <height>1130</height>
+           <y>-283</y>
+           <width>278</width>
+           <height>1100</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -1946,7 +1946,7 @@
                    <number>0</number>
                   </property>
                   <item row="2" column="1">
-                   <widget class="QPushButton" name="staffDividerArrowDownButton_6">
+                   <widget class="QPushButton" name="gClefArrowDown_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -1961,7 +1961,7 @@
                    </widget>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QPushButton" name="reversedBracketBottomButton_6">
+                   <widget class="QPushButton" name="gClef8vbCClef_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -1976,7 +1976,7 @@
                    </widget>
                   </item>
                   <item row="1" column="0">
-                   <widget class="QPushButton" name="reversedBracketTopButton_6">
+                   <widget class="QPushButton" name="gClef8vbOld_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -1991,7 +1991,7 @@
                    </widget>
                   </item>
                   <item row="1" column="2">
-                   <widget class="QPushButton" name="systemDividerButton_6">
+                   <widget class="QPushButton" name="gClef8vbParens_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -2006,7 +2006,7 @@
                    </widget>
                   </item>
                   <item row="2" column="2">
-                   <widget class="QPushButton" name="staffDividerArrowUpButton_6">
+                   <widget class="QPushButton" name="cClef_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -2021,7 +2021,7 @@
                    </widget>
                   </item>
                   <item row="0" column="2">
-                   <widget class="QPushButton" name="bracketButton_6">
+                   <widget class="QPushButton" name="gClef8vb_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -2036,7 +2036,7 @@
                    </widget>
                   </item>
                   <item row="0" column="3">
-                   <widget class="QPushButton" name="bracketTopButton_6">
+                   <widget class="QPushButton" name="gClef8va_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -2051,7 +2051,7 @@
                    </widget>
                   </item>
                   <item row="0" column="0">
-                   <widget class="QPushButton" name="gCleff_Button">
+                   <widget class="QPushButton" name="gClef_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -2066,7 +2066,7 @@
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QPushButton" name="reverseBraceButton_6">
+                   <widget class="QPushButton" name="gClef15mb_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -2081,7 +2081,7 @@
                    </widget>
                   </item>
                   <item row="1" column="3">
-                   <widget class="QPushButton" name="systemDividerLongButton_6">
+                   <widget class="QPushButton" name="gClefLigatedNumberBelow_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -2096,7 +2096,7 @@
                    </widget>
                   </item>
                   <item row="0" column="4">
-                   <widget class="QPushButton" name="bracketBottomButton_6">
+                   <widget class="QPushButton" name="gClef15ma_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -2111,7 +2111,7 @@
                    </widget>
                   </item>
                   <item row="2" column="3">
-                   <widget class="QPushButton" name="staffDividerArrowUpDownButton_6">
+                   <widget class="QPushButton" name="cClef8vb_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -2126,7 +2126,7 @@
                    </widget>
                   </item>
                   <item row="1" column="4">
-                   <widget class="QPushButton" name="systemDividerExtraLongButton_6">
+                   <widget class="QPushButton" name="gClefLigatedNumberAbove_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -2141,7 +2141,7 @@
                    </widget>
                   </item>
                   <item row="2" column="0">
-                   <widget class="QPushButton" name="splitBarDividerButton_6">
+                   <widget class="QPushButton" name="gClefArrowUp_Button">
                     <property name="font">
                      <font>
                       <family>Bravura</family>
@@ -3642,7 +3642,7 @@ border:none;
      <x>0</x>
      <y>0</y>
      <width>1232</width>
-     <height>21</height>
+     <height>37</height>
     </rect>
    </property>
    <property name="sizePolicy">
