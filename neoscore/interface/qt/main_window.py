@@ -6,10 +6,13 @@ from typing import Optional, Tuple
 from PyQt5 import QtCore, QtWidgets, uic
 from PyQt5.QtWidgets import QGraphicsItem
 
+from neoscore.interface.qt.dialog_ui.create_staff import CreateStaffDialog
+
 # cannot import setup/show again here, circular import
 # from neoscore.core.neoscore import setup, show
 from neoscore.core.text import Text
 from neoscore.core.point import ORIGIN
+from neoscore.core.mouse_event import MouseEvent, MouseEventType
 from neoscore.common import *
 
 QT_PRECISE_TIMER = 0
@@ -30,6 +33,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.refresh_func = None
         self.mouse_event_handler = None
         self._frame = 0  # Frame counter used in debug mode
+
+        self.staff_dialog = None
                 
         self.actionNew.triggered.connect(self.newFile)
         self.actionOpen.triggered.connect(self.openFile)
@@ -53,7 +58,6 @@ class MainWindow(QtWidgets.QMainWindow):
                     button_method_map[button] = symbol_name
 
         for button, symbol_name in button_method_map.items():
-            print(f"Button: {button}, Symbol Name: {symbol_name}")
             button.clicked.connect(lambda checked=False, name=symbol_name: self.createMusicText(name))
         
         # Hide Widget Menu
@@ -138,6 +142,10 @@ class MainWindow(QtWidgets.QMainWindow):
         font = MusicFont("Bravura", Unit(10))
         MusicText(ORIGIN, None, symbol_name, font)
         self.updatePage()
+
+    def createStaffDialogPopup(self):
+        self.staff_dialog = CreateStaffDialog()
+        self.staff_dialog.show()
     
     def show(
         self,

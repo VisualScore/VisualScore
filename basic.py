@@ -26,6 +26,8 @@ def mouseReleaseEvent(event):
     if event.event_type == MouseEventType.RELEASE:
         # print("Mouse button released")
         updateProps()
+        neoscore.app_interface.main_window.createStaffDialogPopup()
+        
     # if event.button() == QtCore.Qt.LeftButton:
     #     updateProps()
 
