@@ -45,10 +45,6 @@ class CreateStaffDialog(QtWidgets.QDialog):
         self.staffPreview_graphicsView.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.staffPreview_graphicsView.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
 
-        self.updateStaffPreview()
-
-        #self.staffPreview_graphicsView.invalidateScene(updateStaffPreview)
-
     def updateStaffPreview(self):
         print("Updating staff preview...")
 
@@ -57,16 +53,21 @@ class CreateStaffDialog(QtWidgets.QDialog):
 
         # Get parameters from UI
         line_count = self.lineNumber_spinBox.value()
+
         default_line_spacing = 10
-        uniform_line_spacing = self.lineDistance_spinBox.value()
-        line_distance = uniform_line_spacing * default_line_spacing
+        uniform_line_distance = self.lineDistance_spinBox.value() #in spaces
+        #line_spacing = uniform_line_distance * default_line_spacing #in units
+
         width = self.staffPreview_graphicsView.width() - (_X_MARGIN * 2)
         center_y = self.staffPreview_graphicsView.height() / 2
 
-        staff_item = StaffPreviewItem(line_count, default_line_spacing, line_distance, width)
+        staff_item = StaffPreviewItem(line_count, default_line_spacing, uniform_line_distance, width)
+        staff_height = staff_item.height_in_px
 
-        staff_item.setPos(_X_MARGIN, center_y - (staff_item.height / 2))
+        staff_item.setPos(_X_MARGIN, center_y - (staff_height / 2)) #(staff_item.height / 2))
         self.scene.addItem(staff_item)
+
+        self.scene.update()
 
     def changeStackedWidget(self):
         if self.uniformLineDistance_checkBox.checkState(): # if checked
@@ -74,8 +75,17 @@ class CreateStaffDialog(QtWidgets.QDialog):
         else: # if unchecked
             self.stackedWidget.setCurrentWidget(self.variable_page)
 
+    def getContents(self):
+        data = {}
+
+        lineNum = self.lineNumber_spinBox.value()
+        lineDist = self.lineDistance_spinBox.value()
+
+        data.update({"line_num": lineNum, "line_dist": lineDist})
+
+        return data
+
     def show(self):
-        self.updateStaffPreview()
         super().show()
 
         

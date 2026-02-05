@@ -122,6 +122,8 @@ def q_mouse_event_to_mouse_event(
     ns_document_pos = Point(
         Unit(q_pos.x() + window_pos.x()), Unit(q_pos.y() + window_pos.y())
     )
+    """ q_global_pos = q_event.globalPos()
+    ns_document_pos = Point(Unit(q_global_pos.x()), Unit(q_global_pos.y())) """
     return MouseEvent(ns_event_type, ns_mouse_button, ns_window_pos, ns_document_pos)
 
 

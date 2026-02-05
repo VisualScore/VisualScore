@@ -167,6 +167,16 @@ class Viewport(QtWidgets.QGraphicsView):
         if self.auto_interaction_enabled:
             super().mousePressEvent(e)
 
+    """ def mouseReleaseEvent(self, e):
+        if self.mouse_event_handler:
+            self.mouse_event_handler(
+                q_mouse_event_to_mouse_event(
+                    e, MouseEventType.RELEASE, self.window_document_pos()
+                )
+            )
+        if self.auto_interaction_enabled:
+            super().mouseReleaseEvent(e) """
+    
     def mouseReleaseEvent(self, e):
         if self.mouse_event_handler:
             self.mouse_event_handler(

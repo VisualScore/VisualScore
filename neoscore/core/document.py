@@ -62,6 +62,15 @@ class Document:
         For more information on this object, see :obj:`.PageSupplier`.
         """
         return self._pages
+    
+    def page_areas(self):
+        bounding_rects = []
+
+        for page in self.pages:
+            bounding_rect = page.document_space_bounding_rect
+            bounding_rects.append(bounding_rect)
+
+        return bounding_rects
 
     def _run_on_all_descendants(self, func: Callable):
         for page in self.pages:

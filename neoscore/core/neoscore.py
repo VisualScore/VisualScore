@@ -25,6 +25,8 @@ from neoscore.core.units import Unit
 from neoscore.interface.app_interface import AppInterface
 from neoscore.core.brush_pattern import BrushPattern
 
+from neoscore.interface.qt.converters import point_to_qt_point
+
 if TYPE_CHECKING:
     from neoscore.core.document import Document
     from neoscore.core.font import Font
@@ -565,6 +567,12 @@ def _register_default_fonts():
     )
     register_font(_LORA_REGULAR_PATH)
     register_font(_LORA_ITALIC_PATH)
+
+""" def get_mouse_page_pos(self, page, mouse_doc_pos):
+    page_pos = document.page_origin(page)
+    app_interface.view.mapToScene(point_to_qt_point(page_pos))
+
+    return Point() """
 
 
 def shutdown():

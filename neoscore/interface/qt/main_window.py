@@ -4,7 +4,7 @@ from time import time
 from typing import Optional, Tuple
 
 from PyQt5 import QtCore, QtWidgets, uic
-from PyQt5.QtWidgets import QGraphicsItem
+from PyQt5.QtWidgets import QGraphicsItem, QDialog
 
 from neoscore.interface.qt.dialog_ui.create_staff import CreateStaffDialog
 
@@ -14,6 +14,8 @@ from neoscore.core.text import Text
 from neoscore.core.point import ORIGIN
 from neoscore.core.mouse_event import MouseEvent, MouseEventType
 from neoscore.common import *
+
+from visualscore.insertStaff import VSStaff
 
 QT_PRECISE_TIMER = 0
 
@@ -35,6 +37,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self._frame = 0  # Frame counter used in debug mode
 
         self.staff_dialog = None
+        self.items = []
                 
         self.actionNew.triggered.connect(self.newFile)
         self.actionOpen.triggered.connect(self.openFile)
@@ -143,9 +146,20 @@ class MainWindow(QtWidgets.QMainWindow):
         MusicText(ORIGIN, None, symbol_name, font)
         self.updatePage()
 
-    def createStaffDialogPopup(self):
+    def createStaff(self, mouse_pos):
+        staff_params = self.staff_dialog.getContents()
+        staff_params.update({"mouse_pos": mouse_pos})
+        item = VSStaff(staff_params)
+
+        self.items.append(item)
+        print(self.items)
+
+    def createStaffDialogPopup(self, mouse_pos):
         self.staff_dialog = CreateStaffDialog()
-        self.staff_dialog.show()
+        self.staff_dialog.open()
+        self.staff_dialog.updateStaffPreview()
+
+        self.staff_dialog.accepted.connect(lambda: self.createStaff(mouse_pos))
     
     def show(
         self,
